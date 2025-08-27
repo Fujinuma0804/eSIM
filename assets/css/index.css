@@ -24,6 +24,11 @@ html {
      font-size: 30px;
  }
 
+/* Step 2 (end date) calendar header color */
+#end-calendar .ui-datepicker-header {
+    background: #EB7881 !important;
+}
+
  .ui-datepicker-calendar {
      font-size: 18px !important;
      text-align: center !important;

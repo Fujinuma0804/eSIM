@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あんしんeSIMマーケット</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- jQuery UI Datepicker (CSS/JS) + Japanese locale -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
+
+</head>
+
+<body>
+    <section
+        class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center"
+        style="font-family: 'Zen Kaku Gothic New'">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2">
+                国内用eSIM　商品一覧
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-4xl font-bold">
+                Japan eSIMs
+            </p>
+        </div>
+    </section>
+
+    <section class="w-full py-10 px-4">
+        <!-- 容量から絞り込む -->
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center space-x-2 mb-4">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h2 class="text-2xl font-semibold text-gray-700">容量から絞り込む</h2>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-xl pl-12 md:pl-24">
+                <button
+                    class="rounded-md p-4 text-white font-medium [background:linear-gradient(90deg,#ef7dca_0%,#ab7df8_100%)]">1GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium [background:linear-gradient(90deg,#d16cf8ff_0%,#696ef1ff_100%)]">3GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-gradient-to-r from-[#5d59e5] to-[#4ae5db]">5GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-gradient-to-r from-[#4fd2eb] to-[#82f181]">10GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-gradient-to-r from-[#97ed67] to-[#edd86a]">20GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-gradient-to-r from-[#f1d55e] to-[#f6906c]">30GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-[linear-gradient(90deg,#f3b46d_0%,#f67a7d_100%)]">50GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-[linear-gradient(90deg,#eea2a2_0%,#bbc1bf_19%,#57c6e1_42%,#b49fda_79%,#7ac5d8_100%)]">100GB</button>
+                <button
+                    class="rounded-md p-4 text-white font-medium bg-gradient-to-r from-[#1c1c1c] to-[#3c6fe0]">無制限</button>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t-0 border-dashed border-gray-400 my-8 max-w-4xl mx-auto border-2"></div>
+
+        <!-- 期間から絞り込む -->
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center space-x-2 mb-4">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h2 class="text-2xl font-semibold text-gray-700">期間から絞り込む</h2>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xl pl-12 md:pl-24">
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#b3e5fcff]">3日〜7日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#81d4faff]">8日〜12日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#4fc3f7ff]">13日〜17日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#03a9f4ff]">18日〜22日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#008dd3ff]">23日〜27日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#0277bdff]">28日〜31日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#005b9dff]">180日</button>
+                <button class="rounded-md px-4 py-2 text-white font-medium bg-[#003e6aff]">365日</button>
+            </div>
+        </div>
+
+        <!-- カレンダー選択 -->
+        <div class="max-w-6xl  mx-auto mt-10 pl-12 md:pl-24">
+            <a href="#calendar">
+                <button
+                    class="w-full md:w-96 h-24 rounded-md px-4 md:px-6 py-3 bg-gray-400 text-white font-bold text-xl">
+                    カレンダーから選ぶ
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <div class="border-t border-solid border-gray-400 my-8 max-w-6xl mx-auto border-2" id="show"></div>
+
+
+    <section class="max-w-6xl mx-auto px-4">
+        <!-- Filters -->
+        <div class="flex flex-col sm:flex-row justify-end items-start sm:items-center gap-4 mb-6">
+
+            <div class="flex mx-auto md:mx-0 flex-col md:flex-row gap-4 items-end">
+                <!-- 件数選択 -->
+                <select class="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 w-48 mb-4 md:mb-0">
+                    <option>すべて</option>
+                    <option>10件</option>
+                    <option>20件</option>
+                    <option>30件</option>
+                    <option>40件</option>
+                </select>
+
+                <!-- 並び替え -->
+                <select class="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 w-48">
+                    <option>おすすめ順</option>
+                    <option>価格が高い順</option>
+                    <option>価格が低い順</option>
+                    <option>容量が大きい順</option>
+                    <option>容量が小さい順</option>
+                    <option>期間が長い順</option>
+                    <option>期間が短い順</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-gray-700 text-2xl mb-10" style="font-family: 'Lato', sans-serif;">
+            <p class="font-medium">76件の商品が見つかりました</p>
+            <p>(76件中 すべて 件表示)</p>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        </div>
+
+    </section>
+
+    <section id="calendar" class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#59c7d1] text-center tracking-wide">
+            かんたんプラン計算
+        </h2>
+        <p class="text-center text-gray-500 mt-4">
+            カレンダーからプランを選ぶ
+        </p>
+
+        <div class="mt-12">
+            <!-- Progress line and nodes -->
+            <div class="relative mt-8 text-base md:text-xl font-bold">
+                <div class="h-[2px] w-[90%] bg-gray-200 absolute top-8 left-1/2 -translate-x-1/2"></div>
+
+                <!-- Start node -->
+                <div class="absolute -top-5 left-0 flex flex-col items-center">
+                    <span id="step1-text" class="text-[#20c7c1]">利用開始日</span>
+                    <div id="step1-circle"
+                        class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border-[6px] border-[#20c7c1] shadow-sm">
+                    </div>
+                    <span id="start-date-display" class="text-xs text-[#20c7c1] mt-2"></span>
+                </div>
+
+                <!-- Middle node -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                    <span id="step2-text" class="text-gray-300">利用終了日</span>
+                    <div id="step2-circle" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300"></div>
+                    <span id="end-date-display" class="text-xs text-gray-300 mt-2"></span>
+                </div>
+
+                <!-- End node -->
+                <div class="absolute -top-4 right-0 flex flex-col items-center">
+                    <span id="step3-text" class="text-gray-300">プラン選択</span>
+                    <div id="step3-circle" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Start Date Selection -->
+        <div id="step1-content" class="mt-36">
+            <div class="flex items-center space-x-2 mb-4">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h3 class="text-2xl font-semibold text-gray-700">利用開始日を選択してください</h3>
+            </div>
+            <div class="bg-white rounded-xl p-6 w-full">
+                <div id="start-calendar" class="w-full inline-block"></div>
+            </div>
+        </div>
+
+        <!-- Step 2: End Date Selection (Hidden initially) -->
+        <div id="step2-content" class="mt-36 hidden">
+            <div class="flex items-center space-x-2 mb-4">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h3 class="text-2xl font-semibold text-gray-700">利用終了日を選択してください</h3>
+            </div>
+            <div class="bg-white rounded-xl p-6 w-full">
+                <div id="end-calendar" class="w-full inline-block"></div>
+            </div>
+            <!-- Reset Button -->
+            <div class="text-center mt-8">
+                <button id="reset-button-step2" class="js-reset-to-step1 bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                    はじめからやり直す
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 3: Plan Selection (Hidden initially) -->
+        <div id="step3-content" class="mt-36 hidden">
+            <!-- Usage Period Display -->
+            <div class="flex items-center space-x-2 mb-6">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h3 class="text-2xl font-semibold text-gray-700">ご利用期間</h3>
+            </div>
+            <div class="text-center mb-8 text-gray-600 text-3xl font-bold">
+                <span id="usage-period" class="text-6xl font-extrabold text-gray-600"></span>&nbsp;日間
+            </div>
+
+            <!-- Plan Selection Prompt -->
+            <div class="flex items-center space-x-2 mb-6">
+                <div class="w-3 h-6 bg-orange-500"></div>
+                <h3 class="text-2xl font-semibold text-gray-700">プランを選択してください</h3>
+            </div>
+            <p id="plan-prompt" class="text-orange-600 text-left font-bold text-xl mb-8"></p>
+
+            <!-- Plan Cards Container -->
+            <div id="plan-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                <!-- Plan cards will be generated here -->
+            </div>
+
+            <!-- Prev/Next Duration Panel -->
+            <div id="prev-next-panel" class="hidden mt-10 max-w-4xl mx-auto">
+                <div class="border border-[#4fb3c6] rounded-xl p-6">
+                    <p class="text-center text-[#1ea1c0] font-bold mb-6">1日短いプラン・1日長いプランを表示する</p>
+                    <div class="grid grid-cols-2 divide-x">
+                        <!-- Prev -->
+                        <div class="flex items-center justify-center gap-4 py-4">
+                            <button id="btn-prev-duration" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#aec3cf] shadow-sm disabled:opacity-40" aria-label="1日短いプラン">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 18l-8-6 8-6v12z"/>
+                                </svg>
+                            </button>
+                            <div class="text-center">
+                                <div class="text-gray-500 text-lg">期間</div>
+                                <div class="text-gray-700"><span id="prev-duration" class="text-4xl font-extrabold">0</span> <span class="text-2xl font-bold">日間</span></div>
+                            </div>
+                        </div>
+                        <!-- Next -->
+                        <div class="flex items-center justify-center gap-4 py-4">
+                            <div class="text-center order-1 md:order-none">
+                                <div class="text-gray-500 text-lg">期間</div>
+                                <div class="text-gray-700"><span id="next-duration" class="text-4xl font-extrabold">0</span> <span class="text-2xl font-bold">日間</span></div>
+                            </div>
+                            <button id="btn-next-duration" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#aec3cf] shadow-sm disabled:opacity-40" aria-label="1日長いプラン">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 6l8 6-8 6V6z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="text-center mt-8">
+                <button id="reset-button-step3" class="js-reset-to-step1 bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                    はじめからやり直す
+                </button>
+            </div>
+        </div>
+    </section>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/index.js"></script>
+
+    <script>
+        $(function () {
+            let currentStep = 1;
+            let startDate = null;
+            let endDate = null;
+            let selectedDuration = 0;
+
+            // Initialize start calendar
+            $("#start-calendar").datepicker({
+                minDate: new Date(),
+                inline: true,
+                showOtherMonths: true,
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                showMonthAfterYear: true,
+                yearSuffix: '年',
+                onSelect: function (dateText, inst) {
+                    startDate = new Date(dateText);
+                    updateStep1Display();
+                    goToStep2();
+                }
+            });
+
+            // Initialize end calendar
+            $("#end-calendar").datepicker({
+                minDate: new Date(),
+                inline: true,
+                showOtherMonths: true,
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                showMonthAfterYear: true,
+                yearSuffix: '年',
+                onSelect: function (dateText, inst) {
+                    endDate = new Date(dateText);
+                    updateStep2Display();
+                    calculateDuration();
+                    goToStep3();
+                }
+            });
+
+            // Update step 1 display
+            function updateStep1Display() {
+                if (startDate) {
+                    const formattedDate = startDate.toISOString().split('T')[0];
+                    $('#start-date-display').text(formattedDate);
+                }
+            }
+
+            // Update step 2 display
+            function updateStep2Display() {
+                if (endDate) {
+                    const formattedDate = endDate.toISOString().split('T')[0];
+                    $('#end-date-display').text(formattedDate);
+                }
+            }
+
+            // Calculate duration between start and end dates
+            function calculateDuration() {
+                if (startDate && endDate) {
+                    const timeDiff = endDate.getTime() - startDate.getTime();
+                    const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+                    selectedDuration = dayDiff;
+                    $('#usage-period').text(dayDiff);
+                }
+            }
+
+            // Go to step 2
+            function goToStep2() {
+                currentStep = 2;
+                updateProgressIndicator();
+                $('#step1-content').addClass('hidden');
+                $('#step2-content').removeClass('hidden');
+                $('#step3-content').addClass('hidden');
+            }
+
+            // Go to step 3
+            function goToStep3() {
+                currentStep = 3;
+                updateProgressIndicator();
+                $('#step1-content').addClass('hidden');
+                $('#step2-content').addClass('hidden');
+                $('#step3-content').removeClass('hidden');
+                updatePrevNextPanel();
+                generatePlanCards();
+            }
+
+            // Update progress indicator
+            function updateProgressIndicator() {
+                // Base classes for circles
+                const inactiveCircle = 'w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-300';
+                const circleStep1Active = 'w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-[#20c7c1] bg-[#b9eef1]';
+                const circleStep2Active = 'w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-[#fb7185] bg-[#ffd5dd]';
+                const circleStep3Active = 'w-10 h-10 md:w-12 md:h-12 rounded-full border-[3px] border-[#38bdf8] bg-[#c8ecfe]';
+
+                // Reset texts
+                $('#step1-text').removeClass('text-[#20c7c1]').addClass('text-gray-300');
+                $('#step2-text').removeClass('text-pink-500').addClass('text-gray-300');
+                $('#step3-text').removeClass('text-sky-500').addClass('text-gray-300');
+
+                // Reset circles
+                $('#step1-circle').attr('class', inactiveCircle);
+                $('#step2-circle').attr('class', inactiveCircle);
+                $('#step3-circle').attr('class', inactiveCircle);
+
+                // Reset date colors
+                $('#start-date-display').removeClass('text-[#20c7c1]').addClass('text-transparent');
+                $('#end-date-display').removeClass('text-pink-500').addClass('text-transparent');
+
+                // Activate according to current step
+                if (currentStep === 1) {
+                    $('#step1-text').removeClass('text-gray-300').addClass('text-[#20c7c1]');
+                    $('#step1-circle').attr('class', circleStep1Active);
+                } else if (currentStep === 2) {
+                    $('#step2-text').removeClass('text-gray-300').addClass('text-pink-500');
+                    $('#step2-circle').attr('class', circleStep2Active);
+                    if ($('#start-date-display').text()) {
+                        $('#start-date-display').removeClass('text-transparent').addClass('text-[#20c7c1]');
+                    }
+                } else if (currentStep === 3) {
+                    $('#step3-text').removeClass('text-gray-300').addClass('text-sky-500');
+                    $('#step3-circle').attr('class', circleStep3Active);
+                    if ($('#start-date-display').text()) {
+                        $('#start-date-display').removeClass('text-transparent').addClass('text-[#20c7c1]');
+                    }
+                    if ($('#end-date-display').text()) {
+                        $('#end-date-display').removeClass('text-transparent').addClass('text-pink-500');
+                    }
+                }
+            }
+
+            // Update prev/next panel
+            function updatePrevNextPanel() {
+                const panel = $('#prev-next-panel');
+                if (selectedDuration >= 3 && selectedDuration <= 31) {
+                    panel.removeClass('hidden');
+                    const prev = Math.max(3, selectedDuration - 1);
+                    const next = Math.min(31, selectedDuration + 1);
+                    $('#prev-duration').text(prev);
+                    $('#next-duration').text(next);
+                    $('#btn-prev-duration').prop('disabled', selectedDuration <= 3);
+                    $('#btn-next-duration').prop('disabled', selectedDuration >= 31);
+                } else {
+                    panel.addClass('hidden');
+                }
+            }
+
+            // Handlers for prev/next
+            $(document).on('click', '#btn-prev-duration', function () {
+                if (selectedDuration > 3) {
+                    selectedDuration = selectedDuration - 1;
+                    $('#usage-period').text(selectedDuration);
+                    updatePrevNextPanel();
+                    generatePlanCards();
+                }
+            });
+
+            $(document).on('click', '#btn-next-duration', function () {
+                if (selectedDuration < 31) {
+                    selectedDuration = selectedDuration + 1;
+                    $('#usage-period').text(selectedDuration);
+                    updatePrevNextPanel();
+                    generatePlanCards();
+                }
+            });
+
+            // Find product URL from data.js plans
+            function getPlanUrl(duration, capacity) {
+                try {
+                    const list = (window.plans || []);
+                    const match = list.find(p => {
+                        const capOk = capacity === 'unlimited' ? (p.capacity >= 10000) : (p.capacity === capacity);
+                        return p.duration === duration && capOk;
+                    });
+                    return match && match.url ? match.url : '#';
+                } catch (e) {
+                    return '#';
+                }
+            }
+
+            // Generate plan cards based on duration
+            function generatePlanCards() {
+                const planCardsContainer = $('#plan-cards');
+                let cardsHTML = '';
+
+                // duration 2 days → show guidance only
+                if (selectedDuration === 2 || selectedDuration === 1) {
+                    $('#plan-prompt').text('お選びいただける期間は「3日から31日」までです。');
+                    planCardsContainer.empty();
+                    return;
+                } else {
+                    $('#plan-prompt').text('日数によって、選べる容量が異なります。');
+                }
+
+                const list = (typeof plans !== 'undefined') ? plans : (window.plans || []);
+                let candidates = [];
+
+                if (selectedDuration <= 31) {
+                    candidates = list.filter(p => Number(p.duration) === Number(selectedDuration));
+                } else {
+                    candidates = list.filter(p => Number(p.duration) === 180 || Number(p.duration) === 365);
+                }
+
+                // Optional: sort by price ascending for stable order
+                candidates.sort((a, b) => (a.price || 0) - (b.price || 0));
+
+
+                cardsHTML = candidates.map(p =>
+                    generatePlanCard(p.duration, p.capacity, p.price, p.url || '#')
+                ).join('');
+
+                planCardsContainer.html(cardsHTML);
+            }
+
+            // Generate individual plan card
+            function generatePlanCard(duration, capacity, price, url) {
+                const capacityText = (capacity === 'unlimited' || Number(capacity) >= 10000) ? '無制限' : (capacity + 'GB');
+                const capacityGradient = getCapacityGradient(capacity);
+
+                return `
+                    <div class="m-6 bg-gradient-to-b from-blue-50 to-blue-100 rounded-3xl shadow-[5px_10px_0_#8db8ffc4] p-6 relative flex flex-col items-center text-center w-64 mx-auto">
+                        <div class="absolute border-blue-400 border-[1px] -top-4 right-4 bg-white rounded-xl justify-center flex items-center gap-1 w-20 h-20 shadow-[3px_3px_0_#8db8ff80]">
+                            <img src="./assets/img/dSIM01.png" alt="Docomo" class="w-16 h-16">
+                        </div>
+
+                        <div class="flex items-start gap-2 mt-4 mb-3 ml-0 mr-auto">
+                            <img src="https://storage.googleapis.com/studio-design-asset-files/projects/VGOKd1Beqn/s-2000x1333_v-frms_webp_cbc9c3df-d1d1-4a55-ba00-831b23b6520c_small.webp" alt="Japan" class="rounded-md w-10 h-6 shadow-[3px_3px_0_#8db8ff80]">
+                            <span class="text-sm text-gray-700 font-medium">日本国内用</span>
+                        </div>
+
+                        <div class="mb-3 border-t-[1px] py-3 px-4 border-[#B3E5FC] border-b-[1px] w-full">
+                            <div class="shadow-[3px_3px_0_#8db8ff80] rounded-lg">
+                                <div class="bg-blue-400 text-white font-bold text-lg rounded-t-lg px-6 py-2 text-center">
+                                    <span class="text-3xl">${duration}</span>日間
+                                </div>
+                                <div class="${capacityGradient} text-white font-bold text-lg rounded-b-lg px-6 py-2 text-center">
+                                    <span class="text-3xl">${capacityText}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="line-through text-gray-400 font-bold text-xl">¥${Math.round(price + 300).toLocaleString()}</p>
+
+                        <div class="flex">
+                            <p class="inline-block bg-[#FFCA28] text-white text-xs font-bold px-2 py-1 rounded-md my-1">BEST PRICE</p>
+                            <p class="flex">
+                                <svg class="text-gray-600 scale-150" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15.1746043 8.1203717c.2096629-.17971108.5253129-.15543031.705024.05423261s.1554303.52531292-.0542326.70502399l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.17971107-.23394369-.49536107-.05423261-.70502399.17971107-.20966292.49536107-.23394369.70502399-.05423261l3.17460431 2.7210894zm0 4c.2096629-.1797111.5253129-.1554303.705024.0542326s.1554303.5253129-.0542326.705024l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.1797111-.23394369-.4953611-.05423261-.705024.17971107-.2096629.49536107-.2339437.70502399-.0542326l3.17460431 2.7210894zm0 4c.2096629-.1797111.5253129-.1554303.705024.0542326s.1554303.5253129-.0542326.705024l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.1797111-.23394369-.4953611-.05423261-.705024.17971107-.2096629.49536107-.2339437.70502399-.0542326l3.17460431 2.7210894z"/></svg>
+                                <span class="text-xs my-auto text-gray-600">値下げしました！</span>
+                            </p>
+                        </div>
+
+                        <p class="text-3xl font-extrabold text-red-500 mb-4">¥${price.toLocaleString()} <span class="text-sm text-gray-600">(税込)</span></p>
+
+                        <a href="${url}" target="_blank" class="border-2 text-sm border-blue-400 bg-white text-gray-500 font-bold px-6 py-1 w-full rounded-full hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
+                            お申込み<br><span class="text-xs">（プラン詳細）</span>
+                        </a>
+                    </div>
+                `;
+            }
+
+            // Calculate price based on duration and capacity
+            function calculatePrice(duration, capacity) {
+                let basePrice = 0;
+
+                if (duration <= 31) {
+                    // Short-term pricing
+                    switch (capacity) {
+                        case 1: basePrice = 1180; break;
+                        case 3: basePrice = 1380; break;
+                        case 5: basePrice = 1580; break;
+                        case 10: basePrice = 1780; break;
+                        case 20: basePrice = 1980; break;
+                        case 30: basePrice = 2180; break;
+                        case 50: basePrice = 2380; break;
+                        case 100: basePrice = 2580; break;
+                        case 'unlimited': basePrice = 2980; break;
+                    }
+                } else {
+                    // Long-term pricing
+                    if (duration === 180) {
+                        basePrice = 15800;
+                    } else if (duration === 365) {
+                        basePrice = 29800;
+                    }
+                }
+
+                return basePrice;
+            }
+
+            // Get capacity gradient class
+            function getCapacityGradient(capacity) {
+                if (capacity === 10000) return 'bg-gradient-to-r from-gray-800 to-blue-500';
+                if (capacity === 100) return 'bg-[linear-gradient(90deg,#eea2a2_0%,#bbc1bf_19%,#57c6e1_42%,#b49fda_79%,#7ac5d8_100%)]';
+                if (capacity === 50) return 'bg-gradient-to-r from-orange-400 to-red-400';
+                if (capacity === 20) return 'bg-gradient-to-r from-green-400 to-yellow-400';
+                if (capacity === 10) return 'bg-[linear-gradient(90deg,#22d3ee_0%,#34d399_100%)]';
+                if (capacity === 5) return 'bg-[linear-gradient(90deg,#6366f1,#3b82f6,#22d3ee)]';
+                if (capacity === 3) return 'bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-500';
+                return 'bg-gradient-to-r from-pink-400 via-fuchsia-400 to-purple-500';
+            }
+
+            // Reset button functionality
+            $('.js-reset-to-step1').on('click', function () {
+                currentStep = 1;
+                startDate = null;
+                endDate = null;
+                selectedDuration = 0;
+
+                // Reset calendars
+                $('#start-calendar').datepicker('setDate', null);
+                $('#end-calendar').datepicker('setDate', null);
+
+                // Reset displays
+                $('#start-date-display, #end-date-display').text('');
+                $('#usage-period').text('');
+
+                // Reset progress indicator
+                updateProgressIndicator();
+
+                // Show step 1
+                $('#step1-content').removeClass('hidden');
+                $('#step2-content, #step3-content').addClass('hidden');
+            });
+
+            // Initialize progress indicator
+            updateProgressIndicator();
+        });
+    </script>
+</body>
+
+
+</html>
