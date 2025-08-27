@@ -5,10 +5,19 @@
 
     const yen = (n) => `¥${n.toLocaleString('ja-JP')}`;
 
+    // Filter state
+    let selectedCapacity = null;
+    let selectedDurationRange = null;
+    let selectedSort = 'recommended'; // Default sort
+    let selectedCount = 'all'; // Default display count
+
     // Map capacity to gradient classes used across the UI
     const capacityGradient = (capacity) => {
         if (capacity >= 10000) {
             return 'bg-gradient-to-r from-gray-800 to-blue-500'; // unlimited
+        }
+        if (capacity === 100) {
+            return 'bg-[linear-gradient(90deg,#eea2a2_0%,#bbc1bf_19%,#57c6e1_42%,#b49fda_79%,#7ac5d8_100%)]';
         }
         if (capacity === 50) {
             return 'bg-gradient-to-r from-orange-400 to-red-400';
@@ -73,7 +82,7 @@
                 <div class="flex">
                     <p class="inline-block bg-[#FFCA28] text-white text-xs font-bold px-2 py-1 rounded-md my-1">BEST PRICE</p>
                     <p class="flex">
-                        <svg class="text-gray-600 scale-150" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15.1746043 8.1203717c.2096629-.17971108.5253129-.15543031.705024.05423261s.1554303.52531292-.0542326.70502399l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.17971107-.23394369-.49536107-.05423261-.70502399.17971107-.20966292.49536107-.23394369.70502399-.05423261l3.17460431 2.7210894zm0 4c.2096629-.1797111.5253129-.1554303.705024.0542326s.1554303.5253129-.0542326.705024l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.1797111-.23394369-.4953611-.05423261-.705024.17971107-.2096629.49536107-.2339437.70502399-.0542326l3.17460431 2.7210894z"/></svg>
+                        <svg class="text-gray-600 scale-150" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15.1746043 8.1203717c.2096629-.17971108.5253129-.15543031.705024.05423261s.1554303.52531292-.0542326.70502399l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.17971107-.23394369-.49536107-.05423261-.70502399.17971107-.20966292.49536107-.23394369.70502399-.05423261l3.17460431 2.7210894zm0 4c.2096629-.1797111.5253129-.1554303.705024.0542326s.1554303.5253129-.0542326.705024l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.1797111-.23394369-.4953611-.05423261-.705024.17971107-.2096629.49536107-.2339437.70502399-.0542326l3.17460431 2.7210894zm0 4c.2096629-.1797111.5253129-.1554303.705024.0542326s.1554303.5253129-.0542326.705024l-3.5 3c-.1872449.1604956-.4635465.1604956-.6507914 0l-3.49999999-3c-.20966292-.1797111-.23394369-.4953611-.05423261-.705024.17971107-.2096629.49536107-.2339437.70502399-.0542326l3.17460431 2.7210894z"/></svg>
                         <span class="text-xs my-auto text-gray-600">値下げしました！</span>
                     </p>
                 </div>
@@ -87,6 +96,313 @@
         `;
     };
 
-    // Render all plans
-    grid.innerHTML = plansData.map(cardHtml).join('');
+    // Apply filters and render cards
+    const applyFilters = () => {
+        let filtered = plansData;
+        
+        // Filter by capacity
+        if (selectedCapacity !== null) {
+            if (selectedCapacity === 'unlimited') {
+                filtered = filtered.filter(p => p.capacity >= 10000);
+            } else {
+                filtered = filtered.filter(p => p.capacity === selectedCapacity);
+            }
+        }
+        
+        // Filter by duration
+        if (selectedDurationRange !== null) {
+            if (Array.isArray(selectedDurationRange)) {
+                const [min, max] = selectedDurationRange;
+                filtered = filtered.filter(p => p.duration >= min && p.duration <= max);
+            } else {
+                filtered = filtered.filter(p => p.duration === selectedDurationRange);
+            }
+        }
+        
+        // Apply sorting
+        filtered = applySorting(filtered);
+        
+        // Apply display count limit
+        filtered = applyDisplayCount(filtered);
+        
+        // Update product count
+        const productCount = document.querySelector('.text-gray-700 .font-medium');
+        const totalCount = plansData.length;
+        if (productCount) {
+            if (selectedCount === 'all') {
+                productCount.textContent = `${filtered.length}件の商品が見つかりました`;
+            } else {
+                productCount.textContent = `${filtered.length}件の商品が見つかりました`;
+            }
+        }
+        
+        // Update display count text
+        const displayCountText = document.querySelector('.text-gray-700 p:last-child');
+        if (displayCountText) {
+            if (selectedCount === 'all') {
+                displayCountText.textContent = `(${totalCount}件中 ${filtered.length}件表示)`;
+            } else {
+                displayCountText.textContent = `(${totalCount}件中 ${filtered.length}件表示)`;
+            }
+        }
+        
+        // Render filtered cards
+        grid.innerHTML = filtered.map(cardHtml).join('');
+        
+        // Update active filters display
+        updateActiveFiltersDisplay();
+    };
+
+    // Apply sorting to filtered data
+    const applySorting = (data) => {
+        const sorted = [...data];
+        
+        switch (selectedSort) {
+            case 'price-high':
+                return sorted.sort((a, b) => b.price - a.price);
+            case 'price-low':
+                return sorted.sort((a, b) => a.price - b.price);
+            case 'capacity-high':
+                return sorted.sort((a, b) => b.capacity - a.capacity);
+            case 'capacity-low':
+                return sorted.sort((a, b) => a.capacity - b.capacity);
+            case 'duration-high':
+                return sorted.sort((a, b) => b.duration - a.duration);
+            case 'duration-low':
+                return sorted.sort((a, b) => a.duration - b.duration);
+            case 'recommended':
+            default:
+                // Keep original order for recommended
+                return sorted;
+        }
+    };
+
+    // Apply display count limit
+    const applyDisplayCount = (data) => {
+        if (selectedCount === 'all') {
+            return data;
+        }
+        
+        const count = parseInt(selectedCount);
+        return data.slice(0, count);
+    };
+
+    // Update active filters display in #show div
+    const updateActiveFiltersDisplay = () => {
+        const showDiv = document.getElementById('show');
+        if (!showDiv) return;
+        
+        let filtersHTML = '';
+        
+        // Add capacity filter tag if selected
+        if (selectedCapacity !== null) {
+            let capacityText = '';
+            if (selectedCapacity === 'unlimited') {
+                capacityText = '無制限';
+            } else {
+                capacityText = `${selectedCapacity}GB`;
+            }
+            filtersHTML += `
+                <div class="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-2 rounded-full mr-3 mb-2">
+                    <span class="text-sm font-medium">${capacityText}</span>
+                    <button class="ml-2 text-purple-600 hover:text-purple-800" onclick="removeCapacityFilter()">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Add duration filter tag if selected
+        if (selectedDurationRange !== null) {
+            let durationText = '';
+            if (Array.isArray(selectedDurationRange)) {
+                durationText = `${selectedDurationRange[0]}日〜${selectedDurationRange[1]}日`;
+            } else {
+                durationText = `${selectedDurationRange}日`;
+            }
+            filtersHTML += `
+                <div class="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-2 rounded-full mr-3 mb-2">
+                    <span class="text-sm font-medium">${durationText}</span>
+                    <button class="ml-2 text-blue-600 hover:text-blue-800" onclick="removeDurationFilter()">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Add reset button if any filters are active
+        if (selectedCapacity !== null || selectedDurationRange !== null) {
+            filtersHTML += `
+                <div class="inline-flex items-center ml-auto">
+                    <button class="text-gray-600 hover:text-gray-800 text-sm font-medium" onclick="resetAllFilters()">
+                        条件をリセットする
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Update the show div
+        if (filtersHTML) {
+            showDiv.innerHTML = `
+                <div class="flex flex-wrap items-center justify-between p-4">
+                    <div class="flex flex-wrap items-center">
+                        ${filtersHTML}
+                    </div>
+                </div>
+            `;
+        } else {
+            showDiv.innerHTML = '';
+        }
+    };
+
+    // Remove capacity filter
+    window.removeCapacityFilter = function() {
+        selectedCapacity = null;
+        // Remove active state from capacity buttons
+        const capacityButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-6 button');
+        capacityButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-blue-300'));
+        applyFilters();
+    };
+
+    // Remove duration filter
+    window.removeDurationFilter = function() {
+        selectedDurationRange = null;
+        // Remove active state from duration buttons
+        const durationButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-5 button');
+        durationButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-blue-300'));
+        applyFilters();
+    };
+
+    // Reset all filters
+    window.resetAllFilters = function() {
+        selectedCapacity = null;
+        selectedDurationRange = null;
+        // Remove active state from all buttons
+        const allButtons = document.querySelectorAll('.grid button');
+        allButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-blue-300'));
+        applyFilters();
+    };
+
+    // Add event listeners for sorting and display count
+    document.addEventListener('DOMContentLoaded', function() {
+        // Display count dropdown
+        const countSelect = document.querySelector('select option:first-child').parentElement;
+        if (countSelect) {
+            countSelect.addEventListener('change', function() {
+                const value = this.value;
+                if (value === 'すべて') {
+                    selectedCount = 'all';
+                } else {
+                    selectedCount = value.replace('件', '');
+                }
+                applyFilters();
+            });
+        }
+
+        // Sorting dropdown
+        const sortSelect = document.querySelector('select:last-child');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                const value = this.value;
+                switch (value) {
+                    case 'おすすめ順':
+                        selectedSort = 'recommended';
+                        break;
+                    case '価格が高い順':
+                        selectedSort = 'price-high';
+                        break;
+                    case '価格が低い順':
+                        selectedSort = 'price-low';
+                        break;
+                    case '容量が大きい順':
+                        selectedSort = 'capacity-high';
+                        break;
+                    case '容量が小さい順':
+                        selectedSort = 'capacity-low';
+                        break;
+                    case '期間が長い順':
+                        selectedSort = 'duration-high';
+                        break;
+                    case '期間が短い順':
+                        selectedSort = 'duration-low';
+                        break;
+                    default:
+                        selectedSort = 'recommended';
+                }
+                applyFilters();
+            });
+        }
+    });
+
+    // Add click event listeners to capacity buttons
+    const capacityButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-6 button');
+    capacityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const buttonText = this.textContent.trim();
+            
+            // Remove active state from all capacity buttons
+            capacityButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-blue-300'));
+            
+            if (buttonText === '無制限') {
+                if (selectedCapacity === 'unlimited') {
+                    selectedCapacity = null; // Toggle off
+                } else {
+                    selectedCapacity = 'unlimited';
+                    this.classList.add('ring-4', 'ring-blue-300');
+                }
+            } else if (buttonText.includes('GB')) {
+                const capacity = parseInt(buttonText.replace('GB', ''));
+                if (selectedCapacity === capacity) {
+                    selectedCapacity = null; // Toggle off
+                } else {
+                    selectedCapacity = capacity;
+                    this.classList.add('ring-4', 'ring-blue-300');
+                }
+            }
+            
+            applyFilters();
+        });
+    });
+
+    // Add click event listeners to duration buttons
+    const durationButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-5 button');
+    durationButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const buttonText = this.textContent.trim();
+            
+            // Remove active state from all duration buttons
+            durationButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-blue-300'));
+            
+            if (buttonText.includes('〜')) {
+                const [start, end] = buttonText.split('〜');
+                const min = parseInt(start.replace(/[^0-9]/g, ''));
+                const max = parseInt(end.replace(/[^0-9]/g, ''));
+                
+                if (selectedDurationRange && Array.isArray(selectedDurationRange) && 
+                    selectedDurationRange[0] === min && selectedDurationRange[1] === max) {
+                    selectedDurationRange = null; // Toggle off
+                } else {
+                    selectedDurationRange = [min, max];
+                    this.classList.add('ring-4', 'ring-blue-300');
+                }
+            } else {
+                const duration = parseInt(buttonText.replace(/[^0-9]/g, ''));
+                if (selectedDurationRange === duration) {
+                    selectedDurationRange = null; // Toggle off
+                } else {
+                    selectedDurationRange = duration;
+                    this.classList.add('ring-4', 'ring-blue-300');
+                }
+            }
+            
+            applyFilters();
+        });
+    });
+
+    // Initial render
+    applyFilters();
 })();

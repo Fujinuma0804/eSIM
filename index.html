@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>あんしんeSIMマーケット</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
@@ -13,10 +14,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- jQuery UI Datepicker (CSS/JS) + Japanese locale -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
+
 </head>
 
 <body>
-    <section class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center"
+    <section
+        class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center"
         style="font-family: 'Zen Kaku Gothic New'">
         <div class="container mx-auto px-4">
             <h1 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2">
@@ -80,9 +88,12 @@
 
         <!-- カレンダー選択 -->
         <div class="max-w-6xl  mx-auto mt-10 pl-12 md:pl-24">
-            <button class="w-full md:w-96 h-24 rounded-md px-4 md:px-6 py-3 bg-gray-400 text-white font-bold text-xl">
-                カレンダーから選ぶ
-            </button>
+            <a href="#calendar">
+                <button
+                    class="w-full md:w-96 h-24 rounded-md px-4 md:px-6 py-3 bg-gray-400 text-white font-bold text-xl">
+                    カレンダーから選ぶ
+                </button>
+            </a>
         </div>
     </section>
 
@@ -122,13 +133,84 @@
         </div>
 
         <!-- Products Grid -->
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">            
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         </div>
+
     </section>
 
+    <section id="calendar" class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#59c7d1] text-center tracking-wide">
+            かんたんプラン計算
+        </h2>
+        <p class="text-center text-gray-500 mt-4">
+            カレンダーからプランを選ぶ
+        </p>
+
+        <div class="mt-12">
+
+            <!-- Progress line and nodes -->
+            <div class="relative mt-8 text-base md:text-xl font-bold">
+                <div class="h-[2px] w-[90%] bg-gray-200 absolute top-8 left-1/2 -translate-x-1/2"></div>
+
+                <!-- Start node (active) -->
+                <div class="absolute -top-5 left-0  flex flex-col items-center">
+                    <span class="text-[#20c7c1]">利用開始日</span>
+                    <div
+                        class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white border-[6px] border-[#20c7c1] shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Middle node (disabled) -->
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2  flex flex-col items-center">
+                    <span class="text-gray-300">利用終了日</span>
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300"></div>
+                </div>
+
+                <!-- End node (disabled) -->
+                <div class="absolute -top-4 right-0 flex flex-col items-center">
+                    <span class="text-gray-300">プラン選択</span>
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-300"></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="flex items-center space-x-2 mb-4">
+            <div class="w-3 h-6 bg-orange-500"></div>
+            <h2 class="text-2xl font-semibold text-gray-700">利用開始日を選択してください</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 w-full">
+            <div id="calendar-container" class="w-full inline-block"></div>
+        </div>
+    </section>
     <script src="./assets/js/data.js"></script>
     <script src="./assets/js/index.js"></script>
 
+    <script>
+        $(function () {
+            // Initialize the calendar with Japanese locale
+            $("#calendar-container").datepicker({
+                minDate: new Date(),
+                inline: true,
+                showOtherMonths: true,
+                dateFormat: 'yy-mm-dd',
+                dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                showMonthAfterYear: true,
+                yearSuffix: '年',
+                onSelect: function (dateText, inst) {
+                    console.log('Selected date:', dateText);
+                }
+            });
+
+            // Set current date to August 27, 2025 to match the image
+            var targetDate = new Date(2025, 7, 27); // Month is 0-indexed, so 7 = August
+            $("#calendar-container").datepicker('setDate', targetDate);
+        });
+    </script>
 </body>
 
 
