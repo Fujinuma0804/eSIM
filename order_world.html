@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -19,14 +19,35 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
     <script src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/datepicker-ja.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <style>
+        /* Fix card height consistency */
+        .product-card {
+            height: fit-content;
+        }
+        
+        /* Ensure cards in the same row have equal height */
+        .flex.flex-wrap.gap-6 > div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Make sure the card content fills the available space */
+        .product-card > div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+    </style>
 
 </head>
 
-<body>
+<body class="font-sans bg-[#f5f5f5]" style="font-family: 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'">
     <section
         class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center"
-        style="font-family: 'Zen Kaku Gothic New'">
+        style="font-family: 'Noto Sans JP'">
         <div class="container mx-auto px-4">
             <h1 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2">
                 海外用eSIM　商品一覧
@@ -37,18 +58,62 @@
         </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-4 pb-12">
-        <div class="max-w-xs md:max-w-sm bg-[#eaf3ff] rounded-2xl p-4 shadow-sm">
-            <div class="flex items-center gap-3 mb-2">
-                <span class="text-[#5b78c7] font-bold">eSIM詳細</span>
-                <span class="material-icons text-[#5b78c7]">expand_more</span>
+    <section id="search" class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl border border-dashed border-blue-400 p-12">
+            <!-- Header -->
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">ご利用の国や地域から商品をお選びください</h2>
+                <p class="text-xl text-gray-600">※ひらがなかカタカナでご入力ください</p>
             </div>
-            <div id="esim-details" class="bg-white rounded-2xl p-4"></div>
+            
+            <!-- Search Bar -->
+            <div class="relative mb-10">
+                <div class="flex mx-auto items-center bg-[#f3f8ff] shadow-[3px_10px_0_#8db8ff80] rounded-[24px] text-[#333333] text-[20px] h-full justify-center w-[600px] text-left border border-black border-2 pl-[20px] pr-[10px] pt-[10px] pb-[10px]">
+                    <span class="text-gray-500  mr-2"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
+                    <input type="text" id="searchInput"
+                           class="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-500">
+                    <div class="flex items-center space-x-2">
+                        <button id="clearSearch" class="text-gray-500 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/></svg></button>
+                    </div>
+                </div>
+                <!-- Search Results Dropdown -->
+                <div id="searchResults" class="hidden absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-[#333333] rounded-lg mt-2 shadow-lg z-50 max-h-80 overflow-y-auto border border-[#222]">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+                        
+            <div class="grid grid-cols-3 gap-6 mb-4 text-center text-2xl">
+                <a href="#アジア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="アジア">
+                    アジア
+                </a>
+                <a href="#ヨーロッパ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="ヨーロッパ">
+                    ヨーロッパ
+                </a>
+                <a href="#北米・南米" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="北米・南米">
+                    北米・南米
+                </a>
+                <a href="#オセアニア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="オセアニア">
+                    オセアニア
+                </a>
+                <a href="#中東" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="中東">
+                    中東
+                </a>
+                <a href="#アフリカ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="アフリカ">
+                    アフリカ
+                </a>
+                <a href="#周遊プラン" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="周遊プラン">
+                    周遊プラン
+                </a>
+            </div>
         </div>
     </section>
 
+    <section class="max-w-6xl mx-auto px-4">
+        <div id="products-world-grid" class=""></div>
+    </section>
+
     <script src="./assets/js/data.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/order_world.js"></script>
 
 </body>
 
