@@ -61,9 +61,9 @@
                     <img src="./assets/img/dSIM01.png" alt="Docomo" class="w-16 h-16 ">
                 </div>
 
-                <div class="flex items-start gap-2 mt-4 mb-3 ml-0 mr-auto">
+                <div class="flex items-center gap-2 mt-4 mb-3 ml-0 mr-auto">
                     <img src="https://storage.googleapis.com/studio-design-asset-files/projects/VGOKd1Beqn/s-2000x1333_v-frms_webp_cbc9c3df-d1d1-4a55-ba00-831b23b6520c_small.webp" alt="Japan" class="rounded-md w-10 h-6 shadow-[3px_3px_0_#8db8ff80]">
-                    <span class="text-sm text-gray-700 font-medium">日本国内用</span>
+                    <span class="text-xs text-gray-700 font-medium">日本国内用</span>
                 </div>
 
                 <div class="mb-3 border-t-[1px] py-3 px-4 border-[#B3E5FC] border-b-[1px] w-full">
@@ -159,6 +159,7 @@
                 if (showDiv) {
                     showDiv.scrollIntoView({
                         behavior: 'smooth',
+                        // block: 'center'
                     });
                 }
             }, 100);
@@ -206,33 +207,31 @@
 
         let filtersHTML = '';
 
-                // Add capacity filter tag if selected
+        // Add capacity filter tag if selected
         if (selectedCapacity !== null) {
             let capacityText = '';
             let capacityGradient = '';
-            
+            capacityText = selectedCapacity + 'GB';
+
             if (selectedCapacity === 'unlimited') {
                 capacityText = '無制限';
                 capacityGradient = 'bg-gradient-to-r from-[#1c1c1c] to-[#3c6fe0]';
-            } else {
-                capacityText = selectedCapacity + 'GB';
-                if (selectedCapacity === 1) {
-                    capacityGradient = '[background:linear-gradient(90deg,#ef7dca_0%,#ab7df8_100%)]';
-                } else if (selectedCapacity === 3) {
-                    capacityGradient = '[background:linear-gradient(90deg,#d16cf8ff_0%,#696ef1ff_100%)]';
-                } else if (selectedCapacity === 5) {
-                    capacityGradient = 'bg-gradient-to-r from-[#5d59e5] to-[#4ae5db]';
-                } else if (selectedCapacity === 10) {
-                    capacityGradient = 'bg-gradient-to-r from-[#4fd2eb] to-[#82f181]';
-                } else if (selectedCapacity === 20) {
-                    capacityGradient = 'bg-gradient-to-r from-[#97ed67] to-[#edd86a]';
-                } else if (selectedCapacity === 30) {
-                    capacityGradient = 'bg-gradient-to-r from-[#f1d55e] to-[#f6906c]';
-                } else if (selectedCapacity === 50) {
-                    capacityGradient = '[background:linear-gradient(90deg,#f3b46d_0%,#f67a7d_100%)]';
-                } else if (selectedCapacity === 100) {
-                    capacityGradient = '[background:linear-gradient(90deg,#eea2a2_0%,#bbc1bf_19%,#57c6e1_42%,#b49fda_79%,#7ac5d8_100%)]';
-                }
+            } else if (selectedCapacity === 1) {
+                capacityGradient = '[background:linear-gradient(90deg,#ef7dca_0%,#ab7df8_100%)]';
+            } else if (selectedCapacity === 3) {
+                capacityGradient = '[background:linear-gradient(90deg,#d16cf8ff_0%,#696ef1ff_100%)]';
+            } else if (selectedCapacity === 5) {
+                capacityGradient = 'bg-gradient-to-r from-[#5d59e5] to-[#4ae5db]';
+            } else if (selectedCapacity === 10) {
+                capacityGradient = 'bg-gradient-to-r from-[#4fd2eb] to-[#82f181]';
+            } else if (selectedCapacity === 20) {
+                capacityGradient = 'bg-gradient-to-r from-[#97ed67] to-[#edd86a]';
+            } else if (selectedCapacity === 30) {
+                capacityGradient = 'bg-gradient-to-r from-[#f1d55e] to-[#f6906c]';
+            } else if (selectedCapacity === 50) {
+                capacityGradient = '[background:linear-gradient(90deg,#f3b46d_0%,#f67a7d_100%)]';
+            } else if (selectedCapacity === 100) {
+                capacityGradient = '[background:linear-gradient(90deg,#eea2a2_0%,#bbc1bf_19%,#57c6e1_42%,#b49fda_79%,#7ac5d8_100%)]';
             }
 
             filtersHTML += `                
@@ -247,33 +246,28 @@
             `;
         }
 
-                // Add duration filter tag if selected
+        // Add duration filter tag if selected
         if (selectedDurationRange !== null) {
             let durationText = '';
             let durationBg = '';
-            
+
             if (Array.isArray(selectedDurationRange)) {
                 durationText = `${selectedDurationRange[0]}日〜${selectedDurationRange[1]}日`;
                 // Map duration range to background color
                 const [min, max] = selectedDurationRange;
-                if (min >= 1 && max <= 2) durationBg = 'bg-[#e3f2fdff]';
-                else if (min >= 3 && max <= 7) durationBg = 'bg-[#b3e5fcff]';
+                if (min >= 3 && max <= 7) durationBg = 'bg-[#b3e5fcff]';
                 else if (min >= 8 && max <= 12) durationBg = 'bg-[#81d4faff]';
                 else if (min >= 13 && max <= 17) durationBg = 'bg-[#4fc3f7ff]';
                 else if (min >= 18 && max <= 22) durationBg = 'bg-[#03a9f4ff]';
                 else if (min >= 23 && max <= 27) durationBg = 'bg-[#008dd3ff]';
                 else if (min >= 28 && max <= 31) durationBg = 'bg-[#0277bdff]';
-                else if (min >= 32 && max <= 60) durationBg = 'bg-[#01579bff]';
-                else if (min >= 61 && max <= 90) durationBg = 'bg-[#004d40ff]';
             } else {
                 durationText = `${selectedDurationRange}日`;
-                if (selectedDurationRange === 1) durationBg = 'bg-[#e3f2fdff]';
-                else if (selectedDurationRange === 2) durationBg = 'bg-[#bbdefbff]';
-                else if (selectedDurationRange === 180) durationBg = 'bg-[#005b9dff]';
+                if (selectedDurationRange === 180) durationBg = 'bg-[#005b9dff]';
                 else if (selectedDurationRange === 365) durationBg = 'bg-[#003e6aff]';
             }
-            
-            filtersHTML += `
+
+            filtersHTML += `                
                 <div class="inline-flex items-center ${durationBg} text-white px-4 py-2 rounded-md w-[200px] h-[58px] justify-center">
                     <span class="text-xl font-medium">${durationText}</span>
                     <button class="ml-3 text-white hover:text-gray-200 p-1 transition-colors duration-200 bg-[#333] rounded-full" onclick="removeDurationFilter()">
@@ -412,7 +406,7 @@
     });
 
     // Add click event listeners to duration buttons
-    const durationButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-6 button');
+    const durationButtons = document.querySelectorAll('.grid.grid-cols-2.sm\\:grid-cols-3.md\\:grid-cols-5 button');
     durationButtons.forEach(button => {
         button.addEventListener('click', function () {
             const buttonText = this.textContent.trim();

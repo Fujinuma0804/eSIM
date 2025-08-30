@@ -41,13 +41,12 @@
 
 <body>
     <section
-        class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center"
-        style="font-family: 'Zen Kaku Gothic New'">
+        class="[background:linear-gradient(-225deg,#2CD8D5_0%,#6B8DD6_48%,#8E37D7_100%)] text-white py-8 md:py-12 text-center">
         <div class="container mx-auto px-4">
-            <h1 class="text-2xl md:text-3xl lg:text-5xl font-bold mb-2">
+            <h1 class="text-2xl md:text-3xl lg:text-[43px] font-bold mb-2" style="font-family: 'Zen Kaku Gothic New';">
                 国内用eSIM　商品一覧
             </h1>
-            <p class="text-xl md:text-2xl lg:text-4xl font-bold">
+            <p class="text-xl text-[#EEEEEE] md:text-2xl lg:text-[36px] font-bold" style="font-family: 'Zen Kaku Gothic New';">
                 Japan eSIMs
             </p>
         </div>
@@ -58,7 +57,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center space-x-2 mb-4">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h2 class="text-2xl font-semibold text-gray-700">容量から絞り込む</h2>
+                <h2 class="text-[24px] font-semibold text-[#777777]">容量から絞り込む</h2>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-xl pl-12 md:pl-24">
                 <button
@@ -89,7 +88,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center space-x-2 mb-4">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h2 class="text-2xl font-semibold text-gray-700">期間から絞り込む</h2>
+                <h2 class="text-[24px] font-semibold text-[#777777]">期間から絞り込む</h2>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xl pl-12 md:pl-24">
                 <button class="rounded-md px-4 py-2 text-white font-medium bg-[#b3e5fcff]">3日〜7日</button>
@@ -123,7 +122,7 @@
 
             <div class="flex mx-auto md:mx-0 flex-col md:flex-row gap-4 items-end">
                 <!-- 件数選択 -->
-                <select class="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 w-48 mb-4 md:mb-0">
+                <select class="border border-black px-3 py-2 text-lg font-semibold text-[#777777] focus:ring-2 focus:ring-blue-400 w-48 mb-4 md:mb-0">
                     <option>すべて</option>
                     <option>10件</option>
                     <option>20件</option>
@@ -132,7 +131,7 @@
                 </select>
 
                 <!-- 並び替え -->
-                <select class="border rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 w-48">
+                <select class="border border-black px-3 py-2 text-lg font-semibold text-[#777777] focus:ring-2 focus:ring-blue-400 w-48">
                     <option>おすすめ順</option>
                     <option>価格が高い順</option>
                     <option>価格が低い順</option>
@@ -144,9 +143,9 @@
             </div>
         </div>
 
-        <div class="text-gray-700 text-2xl mb-10" style="font-family: 'Lato', sans-serif;">
-            <p class="font-medium">76件の商品が見つかりました</p>
-            <p>(76件中 すべて 件表示)</p>
+        <div class="text-gray-700 text-2xl mb-10">
+            <p class="font-medium" style="font-family: 'Lato', sans-serif;">75件の商品が見つかりました</p>
+            <p style="font-family: 'Lato', sans-serif;">(75件中 すべて 件表示)</p>
         </div>
 
         <!-- Products Grid -->
@@ -196,7 +195,7 @@
         <div id="step1-content" class="mt-36">
             <div class="flex items-center space-x-2 mb-4">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h3 class="text-2xl font-semibold text-gray-700">利用開始日を選択してください</h3>
+                <h3 class="text-[24px] font-semibold text-[#777777]">利用開始日を選択してください</h3>
             </div>
             <div class="bg-white rounded-xl p-6 w-full">
                 <div id="start-calendar" class="w-full inline-block"></div>
@@ -207,7 +206,7 @@
         <div id="step2-content" class="mt-36 hidden">
             <div class="flex items-center space-x-2 mb-4">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h3 class="text-2xl font-semibold text-gray-700">利用終了日を選択してください</h3>
+                <h3 class="text-[24px] font-semibold text-[#777777]">利用終了日を選択してください</h3>
             </div>
             <div class="bg-white rounded-xl p-6 w-full">
                 <div id="end-calendar" class="w-full inline-block"></div>
@@ -225,7 +224,7 @@
             <!-- Usage Period Display -->
             <div class="flex items-center space-x-2 mb-6">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h3 class="text-2xl font-semibold text-gray-700">ご利用期間</h3>
+                <h3 class="text-[24px] font-semibold text-[#777777]">ご利用期間</h3>
             </div>
             <div class="text-center mb-8 text-gray-600 text-3xl font-bold">
                 <span id="usage-period" class="text-6xl font-extrabold text-gray-600"></span>&nbsp;日間
@@ -234,7 +233,7 @@
             <!-- Plan Selection Prompt -->
             <div class="flex items-center space-x-2 mb-6">
                 <div class="w-3 h-6 bg-orange-500"></div>
-                <h3 class="text-2xl font-semibold text-gray-700">プランを選択してください</h3>
+                <h3 class="text-[24px] font-semibold text-[#777777]">プランを選択してください</h3>
             </div>
             <p id="plan-prompt" class="text-orange-600 text-left font-bold text-xl mb-8"></p>
 
@@ -522,9 +521,9 @@
                             <img src="./assets/img/dSIM01.png" alt="Docomo" class="w-16 h-16">
                         </div>
 
-                        <div class="flex items-start gap-2 mt-4 mb-3 ml-0 mr-auto">
+                        <div class="flex items-center gap-2 mt-4 mb-3 ml-0 mr-auto">
                             <img src="https://storage.googleapis.com/studio-design-asset-files/projects/VGOKd1Beqn/s-2000x1333_v-frms_webp_cbc9c3df-d1d1-4a55-ba00-831b23b6520c_small.webp" alt="Japan" class="rounded-md w-10 h-6 shadow-[3px_3px_0_#8db8ff80]">
-                            <span class="text-sm text-gray-700 font-medium">日本国内用</span>
+                            <span class="text-xs text-gray-700 font-medium">日本国内用</span>
                         </div>
 
                         <div class="mb-3 border-t-[1px] py-3 px-4 border-[#B3E5FC] border-b-[1px] w-full">
