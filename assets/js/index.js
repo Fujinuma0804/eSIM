@@ -63,21 +63,21 @@
 
                 <div class="flex items-center gap-2 mt-4 mb-3 ml-0 mr-auto">
                     <img src="https://storage.googleapis.com/studio-design-asset-files/projects/VGOKd1Beqn/s-2000x1333_v-frms_webp_cbc9c3df-d1d1-4a55-ba00-831b23b6520c_small.webp" alt="Japan" class="rounded-md w-10 h-6 shadow-[3px_3px_0_#8db8ff80]">
-                    <span class="text-xs text-gray-700 font-medium">日本国内用</span>
+                    <span class="text-xs text-gray-700 font-medium font-inter">日本国内用</span>
                 </div>
 
                 <div class="mb-3 border-t-[1px] py-3 px-4 border-[#B3E5FC] border-b-[1px] w-full">
                     <div class="shadow-[3px_3px_0_#8db8ff80] rounded-lg">
                         <div class="${durationBg} text-white font-bold text-lg rounded-t-lg px-6 py-2 text-center">
-                            <span class="text-3xl">${duration}</span>日間
+                            <span class="text-3xl font-inter font-black">${duration}</span>&nbsp;日間
                         </div>
                         <div class="${capGradient} text-white font-bold ${isUnlimited ? 'text-3xl' : 'text-lg'} rounded-b-lg px-6 py-2 text-center">
-                            ${isUnlimited ? '無制限' : `<span class=\"text-3xl\">${capacity}</span>GBまで`}
+                            ${isUnlimited ? '無制限' : `<span class=\"text-3xl font-inter font-black\">${capacity}</span>&nbsp;GBまで`}
                         </div>
                     </div>
                 </div>
 
-                <p class="line-through text-gray-400 font-bold text-xl">${yen(Math.round(price + 300))}</p>
+                <p class="line-through text-gray-400 font-bold text-xl font-inter">${yen(Math.round(price + 300))}</p>
 
                 <div class="flex">
                     <p class="inline-block bg-[#FFCA28] text-white text-xs font-bold px-2 py-1 rounded-md my-1">BEST PRICE</p>
@@ -87,7 +87,7 @@
                     </p>
                 </div>
 
-                <p class="text-3xl font-extrabold text-red-500 mb-4">${yen(price)} <span class="text-sm text-gray-600">(税込)</span></p>
+                <p class="text-3xl font-extrabold text-red-500 mb-4 font-inter font-black">${yen(price)} <span class="text-sm text-gray-600">(税込)</span></p>
 
                 <a href="${url}" class="border-2 text-sm border-blue-400 bg-white text-gray-500 font-bold px-6 py-1 w-full rounded-full hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
                     お申込み<br><span class="text-xs">（プラン詳細）</span>

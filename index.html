@@ -12,6 +12,7 @@
                 extend: {
                     fontFamily: {
                         'sans': ['Noto Sans JP', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     }
                 }
             }
@@ -30,6 +31,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- jQuery UI Datepicker (CSS/JS) + Japanese locale -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -512,7 +516,7 @@
 
             // Generate individual plan card
             function generatePlanCard(duration, capacity, price, url) {
-                const capacityText = (capacity === 'unlimited' || Number(capacity) >= 10000) ? '無制限' : (capacity + 'GB');
+                const capacityText = (capacity === 'unlimited' || Number(capacity) >= 10000) ? '無制限' : (capacity);
                 const capacityGradient = getCapacityGradient(capacity);
 
                 return `
@@ -529,15 +533,15 @@
                         <div class="mb-3 border-t-[1px] py-3 px-4 border-[#B3E5FC] border-b-[1px] w-full">
                             <div class="shadow-[3px_3px_0_#8db8ff80] rounded-lg">
                                 <div class="bg-blue-400 text-white font-bold text-lg rounded-t-lg px-6 py-2 text-center">
-                                    <span class="text-3xl">${duration}</span>日間
+                                    <span class="text-3xl font-inter font-black">${duration}</span>&nbsp;日間
                                 </div>
                                 <div class="${capacityGradient} text-white font-bold text-lg rounded-b-lg px-6 py-2 text-center">
-                                    <span class="text-3xl">${capacityText}</span>
+                                    <span class="text-3xl font-inter font-black">${capacityText}</span>&nbsp;GBまで
                                 </div>
                             </div>
                         </div>
 
-                        <p class="line-through text-gray-400 font-bold text-xl">¥${Math.round(price + 300).toLocaleString()}</p>
+                        <p class="line-through text-gray-400 font-bold text-xl font-inter">¥${Math.round(price + 300).toLocaleString()}</p>
 
                         <div class="flex">
                             <p class="inline-block bg-[#FFCA28] text-white text-xs font-bold px-2 py-1 rounded-md my-1">BEST PRICE</p>
@@ -547,7 +551,7 @@
                             </p>
                         </div>
 
-                        <p class="text-3xl font-extrabold text-red-500 mb-4">¥${price.toLocaleString()} <span class="text-sm text-gray-600">(税込)</span></p>
+                        <p class="text-3xl font-extrabold text-red-500 mb-4 font-inter font-black">¥${price.toLocaleString()} <span class="text-sm text-gray-600">(税込)</span></p>
 
                         <a href="${url}" class="border-2 text-sm border-blue-400 bg-white text-gray-500 font-bold px-6 py-1 w-full rounded-full hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
                             お申込み<br><span class="text-xs">（プラン詳細）</span>
