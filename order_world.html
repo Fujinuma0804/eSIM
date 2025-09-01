@@ -83,21 +83,21 @@
             
             <!-- Search Bar -->
             <div class="relative mb-10">
-                <div class="flex mx-auto items-center bg-[#f3f8ff] shadow-[3px_10px_0_#8db8ff80] rounded-[24px] text-[#333333] text-[20px] h-full justify-center w-[600px] text-left border border-black border-2 pl-[20px] pr-[10px] pt-[10px] pb-[10px]">
-                    <span class="text-gray-500  mr-2"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
+                <div class="flex mx-auto items-center bg-[#f3f8ff] shadow-[3px_10px_0_#8db8ff80] rounded-[24px] text-[#333333] text-[20px] h-full justify-center w-auto md:w-[600px] text-left border border-black border-2 pl-[20px] pr-[10px] pt-[10px] pb-[10px]">
+                    <span class="text-gray-500 "><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></span>
                     <input type="text" id="searchInput"
-                           class="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-500">
+                           class="w-0 flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-500">
                     <div class="flex items-center space-x-2">
                         <button id="clearSearch" class="text-gray-500 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M15 16h4v2h-4zm0-8h7v2h-7zm0 4h6v2h-6zM3 18c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V8H3v10zM14 5h-3l-1-1H6L5 5H2v2h12z"/></svg></button>
                     </div>
-                </div>
-                <!-- Search Results Dropdown -->
-                <div id="searchResults" class="hidden absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-[#333333] rounded-lg mt-2 shadow-lg z-50 max-h-80 overflow-y-auto border border-[#222]">
-                    <!-- Results will be populated by JavaScript -->
+                    <!-- Search Results Dropdown -->
+                    <div id="searchResults" class="hidden absolute top-full left-1/2 -translate-x-1/2 w-[calc(100%-20px)] md:w-[600px] bg-[#333333] rounded-lg mt-2 shadow-lg z-50 max-h-80 overflow-y-auto border border-[#222]">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
                         
-            <div class="grid grid-cols-3 gap-6 mb-4 text-center text-2xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-4 text-center text-2xl">
                 <a href="#アジア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="アジア">
                     アジア
                 </a>

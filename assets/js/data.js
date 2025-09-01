@@ -1476,7 +1476,7 @@ const plans1 = {
             name_jp: "ロシア連邦",
             name_en: "Russia",
             flag_img: "flag_russia.png",
-            price: 780,
+            price: 980,
             info: [
                 { icon: 'location_on', title: '対応国', text: 'ロシア' },
                 { icon: 'language', title: 'ネットワーク', text: 'VimpelCom(beeline)' },
@@ -1615,9 +1615,9 @@ const plans1 = {
     "オセアニア": [
         {
             name_jp: "オーストラリア",
-            name_en: "Brazil",
-            flag_img: "flag_brazil.png",
-            price: 2980,
+            name_en: "Australia",
+            flag_img: "flag_australia.png",
+            price: 880,
             info: [
                 { icon: 'location_on', title: '対応国', text: 'オーストラリア' },
                 { icon: 'language', title: 'ネットワーク', text: 'Optus、Telstra' },
@@ -1652,8 +1652,8 @@ const plans1 = {
                 { icon: 'info', title: 'APN', text: '3gnet' },
                 { icon: 'repeat', title: '容量追加', text: '不可（eSIMの再購入は可能）' }
             ],
-            url_1: "https://shop.esim-market.net/products/detail.php?product_id=115",
-            url_2: "https://shop.esim-market.net/products/detail.php?product_id=171"
+            url_1: "https://shop.esim-market.net/products/detail.php?product_id=116",
+            url_2: "https://shop.esim-market.net/products/detail.php?product_id=172"
         }
     ],
     "中東": [
@@ -1702,7 +1702,7 @@ const plans1 = {
     ],
     "アフリカ": [
         {
-            name_jp: "南アフリカ共和国",
+            name_jp: "エジプト",
             name_en: "Egypt",
             flag_img: "flag_egypt.png",
             price: 2180,
@@ -1723,7 +1723,7 @@ const plans1 = {
             url_2: "https://shop.esim-market.net/products/detail.php?product_id=170"
         },
         {
-            name_jp: "エジプト",
+            name_jp: "南アフリカ共和国",
             name_en: "Republic of South Africa",
             flag_img: "flag_south africa.png",
         }

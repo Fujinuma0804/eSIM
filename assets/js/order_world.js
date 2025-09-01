@@ -55,7 +55,7 @@
     };
 
     const worldcardHtml = (regionKey, item, index) => {
-        const slug = `${toSlug(regionKey)}-${toSlug(item.name_en || item.name_jp || index)}` || `card-${index}`;
+        const slug = `${toSlug(regionKey)}-${toSlug(item.name_en || item.name_jp || index)}-${index}` || `card-${index}`;
         const countriesId = `${slug}-countries`;
         const detailId = `${slug}-detail`;
         const buyUrl1 = item.url_1 || item.url || '';
@@ -82,6 +82,7 @@
                     <div class="rounded-md">
                         <img src="${imageSrc(item)}" alt="${item.name_en || ''}" class="rounded-lg shadow-[3px_3px_rgba(0,0,0,0.2)] flex-none h-auto my-[10px] ${isCountryCard ? 'w-20 h-16' : 'w-full'}">
                     </div>
+                    <div class="text-xs p-2 text-[#333]">${item.description || ''}</div>
                 </div>
 
                 ${isRegionCard ? `
@@ -99,7 +100,7 @@
                 <div class="flex flex-col flex-nowrap items-center justify-start border-y border-y-[#42a5f5b3] w-full py-2">
                     ${hasPrice && hasBuy1 ? `
                         <p class="text-sm text-[#333]"><span class="text-[#cb1bf6ff] text-lg font-extrabold">無制限</span>プラン<span class="text-[#cb1bf6ff] text-lg font-extrabold">${formatPrice(priceText)}</span>円～</p>
-                        <a href="${buyUrl1}" target="_blank" class="text-sm bg-[linear-gradient(90deg,#00dbde_0%,#fc00ff_100%)] text-white font-bold px-6 py-1 w-full rounded-full hover:bg-none hover:bg-[#d500f9] shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
+                        <a href="${buyUrl1}" class="text-sm bg-[linear-gradient(90deg,#00dbde_0%,#fc00ff_100%)] text-white font-bold px-6 py-1 w-full rounded-full hover:bg-none hover:bg-[#d500f9] shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
                             お申込み<br><span class="text-xs">（プラン料金はこちら）</span>
                         </a>
                     ` : `
@@ -111,7 +112,7 @@
                 <div class="flex flex-col flex-nowrap items-center justify-start border-t border-t-[#42a5f5b3] w-full py-2">
                     ${hasPrice && hasBuy2 ? `
                         <p class="text-sm text-[#333]"><span class="text-[#1e88e5ff] text-lg font-extrabold">1日1GB</span>プラン<span class="text-[#1e88e5ff] text-lg font-extrabold">${formatPrice(priceText - 150)}</span>円～</p>
-                        <a href="${buyUrl2}" target="_blank" class="text-sm bg-gradient-to-r from-[#0acffe] to-[#495aff] text-white font-bold px-6 py-1 w-full rounded-full hover:bg-none hover:bg-[#495aff] shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
+                        <a href="${buyUrl2}" class="text-sm bg-gradient-to-r from-[#0acffe] to-[#495aff] text-white font-bold px-6 py-1 w-full rounded-full hover:bg-none hover:bg-[#495aff] shadow-[3px_3px_0_#8db8ff80] transition-all duration-300">
                             お申込み<br><span class="text-xs">（プラン料金はこちら）</span>
                         </a>
                     ` : `
@@ -232,7 +233,14 @@
     }
 
     function search(q) {
-        const query = (q || '').trim().toLowerCase();
+        // Convert hiragana to katakana for better Japanese text matching
+        const convertHiraganaToKatakana = (text) => {
+            return text.replace(/[ぁ-ん]/g, function(s) {
+                return String.fromCharCode(s.charCodeAt(0) + 0x60);
+            });
+        };
+        
+        const query = convertHiraganaToKatakana((q || '').trim()).toLowerCase();
         if (!query) {
             searchResults.classList.add('hidden');
             searchResults.innerHTML = '';
