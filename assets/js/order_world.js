@@ -248,10 +248,13 @@
             return;
         }
         setTitlesVisible(false);
+        
+        // Only show countries that START with the search query
         const raw = dataset.filter(r =>
-            r.name_jp.toLowerCase().includes(query) ||
-            r.name_en.toLowerCase().includes(query)
+            r.name_jp.toLowerCase().startsWith(query) ||
+            r.name_en.toLowerCase().startsWith(query)
         );
+        
         // Deduplicate by Japanese name, keep first occurrence
         const seen = new Set();
         const results = [];

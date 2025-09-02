@@ -74,7 +74,7 @@
     </section>
 
     <section id="search" class="max-w-4xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-2xl border border-dashed border-blue-400 p-12">
+        <div class="bg-white rounded-2xl border border-dashed border-blue-400 py-12 px-2 md:px-12">
             <!-- Header -->
             <div class="text-center mb-6">
                 <h2 class="text-xl font-bold text-gray-800 mb-2">ご利用の国や地域から商品をお選びください</h2>
@@ -96,29 +96,47 @@
                     </div>
                 </div>
             </div>
-                        
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-4 text-center text-2xl">
-                <a href="#アジア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="アジア">
-                    アジア
-                </a>
-                <a href="#ヨーロッパ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="ヨーロッパ">
-                    ヨーロッパ
-                </a>
-                <a href="#北米・南米" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="北米・南米">
-                    北米・南米
-                </a>
-                <a href="#オセアニア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="オセアニア">
-                    オセアニア
-                </a>
-                <a href="#中東" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="中東">
-                    中東
-                </a>
-                <a href="#アフリカ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="アフリカ">
-                    アフリカ
-                </a>
-                <a href="#周遊プラン" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors" data-region="周遊プラン">
-                    周遊プラン
-                </a>
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-center text-[1.15rem] md:text-2xl">
+                <!-- Row 1: 2 buttons on mobile, 3 on desktop -->
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#アジア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="アジア">
+                        アジア
+                    </a>
+                </div>
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#ヨーロッパ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="ヨーロッパ">
+                        ヨーロッパ
+                    </a>
+                </div>
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#北米・南米" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="北米・南米">
+                        北米・南米
+                    </a>
+                </div>
+                
+                <!-- Row 2: 2 buttons on mobile, 3 on desktop -->
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#オセアニア" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="オセアニア">
+                        オセアニア
+                    </a>
+                </div>
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#中東" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="中東">
+                        中東
+                    </a>
+                </div>
+                <div class="flex justify-center w-[45%] md:w-[30%]">
+                    <a href="#アフリカ" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-full" data-region="アフリカ">
+                        アフリカ
+                    </a>
+                </div>
+                
+                <!-- Row 3: Centered single button -->
+                <div class="w-full flex justify-center">
+                    <a href="#周遊プラン" class="region-btn bg-white text-orange-500 hover:bg-orange-500 hover:text-white px-5 py-4 rounded-full border-2 border-orange-500 font-bold transition-colors w-[45%] md:w-[30%]" data-region="周遊プラン">
+                        周遊プラン
+                    </a>
+                </div>
             </div>
         </div>
     </section>
