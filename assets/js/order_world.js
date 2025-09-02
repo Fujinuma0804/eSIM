@@ -310,6 +310,11 @@
             searchInput.value = name;
             searchResults.classList.add('hidden');
             setTitlesVisible(false);
+            // Scroll to the first visible product card
+            const firstVisibleCard = document.querySelector('#products-world-grid .product-card:not([style*="display: none"])');
+            if (firstVisibleCard && typeof firstVisibleCard.scrollIntoView === 'function') {
+                firstVisibleCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             return;
         }
 
